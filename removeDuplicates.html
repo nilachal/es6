@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Remove Duplicates from Sorted Array
+        </title>
+        <script>
+            var removeDuplicates = function(nums) {
+                let length = nums.length;
+                let result = Array.from(new Set(nums));
+                let answerLength = result.length;
+                for(let i = 0 ; i < length; i ++) {
+                    if(typeof result[i] === "undefined") {
+                        result[i] = "_";
+                    }
+                }
+                console.log(result);
+                return [answerLength, result];
+            };
+            var answer = removeDuplicates([1,1,2]);
+            document.write(answer);
+        </script>
+    </head>
+    <body>
+        Please check console for more information
+    </body>
+</html>

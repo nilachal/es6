@@ -1,0 +1,12 @@
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+    if(digits) {
+        const stringFromGivenData = parseInt(digits.join(""));
+        const plusOne = stringFromGivenData + 1
+        const plusOneString = plusOne.toString()
+        return plusOneString.split('')
+    }
+};

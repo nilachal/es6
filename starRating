@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .star {
+            font-size: 50px;
+            color: grey;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="star">&starf;</div>
+        <div class="star">&starf;</div>
+        <div class="star">&starf;</div>
+        <div class="star">&starf;</div>
+        <div class="star">&starf;</div>
+    </div>
+    <div id="result"></div>
+    <script>
+        const stars = document.querySelectorAll('.star')
+        stars.forEach((star, index) => {
+            star.setAttribute('data-value', index)
+            star.addEventListener('mouseover', () => {
+                const mouseOverElementNumber = star.getAttribute("data-value")
+                if(mouseOverElementNumber > 0) {
+                    stars.forEach((starForColoring, index) => {
+                        if(index > mouseOverElementNumber) {
+                            starForColoring.style.color = 'grey'
+                            return false
+                        }
+                        starForColoring.style.color = 'yellow'
+                    })
+                } else {
+                    star.style.color = 'yellow'
+                }
+            })
+            star.addEventListener('click', () => {
+                const mouseClickedNumber = parseInt(star.getAttribute("data-value")) + 1
+                document.getElementById('result').innerHTML = mouseClickedNumber + "/5"
+            })
+        })
+    </script>
+</body>
+
+</html>

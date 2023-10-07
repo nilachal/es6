@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 200px;
+        }
+        .container > div {
+            height: 50px;
+            width: 50px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #result {
+            width: 75%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="result"></div>
+        <div class="digits">C</div>
+        <div class="digits">7</div>
+        <div class="digits">8</div>
+        <div class="digits">9</div>
+        <div class="digits">&starf;</div>
+        <div class="digits">4</div>
+        <div class="digits">5</div>
+        <div class="digits">6</div>
+        <div class="digits">-</div>
+        <div class="digits">1</div>
+        <div class="digits">2</div>
+        <div class="digits">3</div>
+        <div class="digits">+</div>
+        <div class="digits">/</div>
+        <div class="digits">0</div>
+        <div class="digits">.</div>
+        <div class="digits">=</div>
+    </div>
+
+    <script>
+        const parse = (str) => {
+            return Function(`'use strict'; return (${str})`)()
+        }
+        const specialChars = ['C', '*', '-', '+', '=', '.', '/']
+        const btns = document.querySelectorAll('.digits')
+        const resultElement = document.getElementById('result')
+        let tempResult = ''        
+        btns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const clickedValue = btn.innerHTML
+                if(specialChars.includes(clickedValue)) {
+                    switch(clickedValue) {
+                        case specialChars[0]:
+                            tempResult = ''
+                            break
+                        case specialChars[4]:
+                            if(tempResult)
+                            tempResult = parse(tempResult)  
+                            break                    
+                        default:
+                            tempResult += clickedValue
+                            break
+                    }
+                } else {
+                    tempResult += clickedValue
+                }
+                resultElement.innerHTML = tempResult
+            })
+        })
+    </script>
+</body>
+</html>

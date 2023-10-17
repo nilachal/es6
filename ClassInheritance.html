@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    class Car {
+      constructor(brand) {
+        this.carname = brand;
+      }
+      present() {
+        return 'I have a ' + this.carname;
+      }
+    }
+
+    class Model extends Car {
+      constructor(brand, mod) {
+        super(brand);
+        this.model = mod;
+      }
+      show() {
+        return this.present() + ', it is a ' + this.model;
+      }
+    }
+
+    const myCar = new Model("Ford", "Mustang");
+    console.log(myCar.show());
+
+
+    class Communicate {
+      constructor(fromNumber, toNumber) {
+        this.fromNumber = fromNumber;
+        this.toNumber = toNumber;
+      }
+      connect() {
+        return `connected from ${this.fromNumber} to ${this.toNumber}`;
+      }
+    }
+
+    class Message extends Communicate {
+      constructor(fromNumber, toNumber, messageId, messageText, sentTime) {
+        super(fromNumber, toNumber)
+        this.messageId = messageId
+        this.messageText = messageText
+        this.sentTime = sentTime
+      }
+      send() {
+        console.log(this.connect())
+        return this.connect() + ', and the message having the following info are sent  ' + this.messageId + this.messageText +  this.sentTime;
+      }
+    }
+
+    const msgObj = new Message("111", "222", "333","444","555")
+    console.log(msgObj.connect())
+    console.log(msgObj.send())
+
+    class Call extends Communicate {
+      constructor(fromNumber, toNumber, callId, startTime, endTime) {
+        super(fromNumber, toNumber)
+        this.callId = callId
+        this.startTime = startTime
+        this.endTime = endTime
+      }
+      call() {
+        console.log(this.connect())
+        return this.connect() + ` and called from ${this.fromNumber} to ${this.toNumber} for ${this.duration()}`;
+      }
+      duration() {
+        return this.startTime - this.endTime
+      }
+    }
+    const callObj = new Call("vvvv", "nnnn", "www","ttt","kkkk")
+    console.log(callObj.call())
+    console.log(callObj.duration())
+  </script>
+</body>
+
+</html>
